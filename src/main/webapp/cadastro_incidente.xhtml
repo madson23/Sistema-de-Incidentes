@@ -1,0 +1,190 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head><title>Cadastro de Incidentes</title></h:head>
+<h:form id="cadastroInc">
+	<p:panel header="FORMULARIO">
+	<p:messages autoUpdate="true"/>
+	  
+    <style>
+        /* reset on the showcase style*/
+        body .ui-panelgrid .ui-panelgrid-cell {
+            background-color: transparent;
+        }
+
+        /* example use of styles for your form */
+        .my-heading-row {
+            background-color: var(--surface-c);
+            font-weight: bold;
+        }
+        .grid-radio td {
+        padding: .5rem;
+        }
+        .legend {
+        display: inline-block;
+        width: 1.5rem;
+        height: 1.5rem;
+        border-radius: .25rem;
+        vertical-align: sub;
+        }
+        
+         .grid-checkbox td {
+        padding: .5rem;
+        }
+
+    </style>
+
+    <!--
+    Note: Rows and columns can have style, styleClass, and id.
+    Note: A column with a defined styleClass will ignore the styleClass specified in the columnClasses list.
+    Note: Note the use of ui-fluid to ensure that components are sized correctly and the use of ui-panelgrid-blank to remove borders.
+    -->
+	<p:panelGrid columns="4"
+                 columnClasses="ui-grid-col-2,ui-grid-col-4,ui-grid-col-2,ui-grid-col-4"
+                 layout="grid"
+                 styleClass="ui-panelgrid-blank ui-fluid"
+                 style="border:0px none; background-color:transparent;">
+
+        <p:row styleClass="my-heading-row">
+            VÍTIMA
+        </p:row>
+
+        <p:outputLabel for="nomeVit" value="Nome Identificado:"/>
+        <p:inputText id="nomeVit" value="#{formularioBean.formulario.nomeVit}" placeholder="Primeiro Nome"/>
+        
+        <p:outputLabel for="sexoVit" value="Sexo:"/>
+         <p:selectOneRadio id="sexoVit" value="#{formularioBean.formulario.sexoVit}">
+            <f:selectItem itemLabel="FEMININO" itemValue="FEMININO"/>
+            <f:selectItem itemLabel="MASCULINO" itemValue="MASCULINO"/>
+        </p:selectOneRadio>
+
+        <p:outputLabel for="idadeVit" value="Idade:"/>
+        <p:inputText id="idadeVit" value="#{formularioBean.formulario.idadeVit}" placeholder=""/>
+
+        <p:outputLabel for="emailVit" value="Email:"/>
+        <p:inputText id="emailVit" value="#{formularioBean.formulario.emailVit}" placeholder="Digite o seu endereço de e-mail"/>
+        
+        <p:outputLabel for="serieVit" value="Série:"/>
+        <p:inputText id="serieVit" value="#{formularioBean.formulario.serieVit}" placeholder=""/>
+        
+        <p:outputLabel for="opçãoTurno" value="Turno:"/>
+                <p:selectOneMenu id="opçãoTurno" value="#{formularioBean.formulario.turnoVit}">
+                    <f:selectItem itemLabel="Escolha uma Opção" itemValue=""/>
+                    <f:selectItem itemLabel="Manhã" itemValue="Manhã"/>
+                    <f:selectItem itemLabel="Tarde" itemValue="Tarde"/>
+                    <f:selectItem itemLabel="Noite" itemValue="Noite"/>
+                    <f:facet name="footer">
+                        <p:divider styleClass="mt-0" />
+                        <h:outputText value="3 opções" style="font-weight:bold;"/>
+                    </f:facet>
+                </p:selectOneMenu>
+
+        <p:outputLabel for="endereçoVit" value="Endereço:"/>
+        <p:inputTextarea id="endereçoVit" value="#{formularioBean.formulario.enderecoVit}" rows="3"/>
+
+        <p:row id="my-row-id" styleClass="my-heading-row" style="font-weight: bold">
+            SUPOSTO AGRESSOR
+        </p:row>
+
+        <p:outputLabel for="nomeSusp" value="Nome Identificado:"/>
+        <p:inputText id="nomeSusp" value="#{formularioBean.formulario.nome}" placeholder="Primeiro Nome"/>
+        
+        <p:outputLabel for="sexoSusp" value="Sexo:"/>
+         <p:selectOneRadio id="sexoSusp" value="#{formularioBean.formulario.sexo}">
+            <f:selectItem itemLabel="FEMININO" itemValue="FEMININO"/>
+            <f:selectItem itemLabel="MASCULINO" itemValue="MASCULINO"/>
+        </p:selectOneRadio>
+
+        <p:outputLabel for="idadeSusp" value="Idade:"/>
+        <p:inputText id="idadeSusp" value="#{formularioBean.formulario.idade}" placeholder=""/>
+
+
+		<p:outputLabel for="parentesco" value="Grau de parentesco/Relacionamento com a vítima:"/>
+		<p:inputText id="parentesco" value="#{formularioBean.formulario.grauParentesco}" placeholder="Ex:Pai,Mãe,Amigo,Professor..." />       
+       
+        <p:outputLabel for="profissao" value="Ocupação (Profissão):"/>
+        <p:inputText id="profissao" value="#{formularioBean.formulario.profissao}"/>
+        
+        <p:outputLabel for="corSusp" value="Raça/Cor:"/>
+         <p:selectOneRadio id="corSusp" value="#{formularioBean.formulario.racaCor}">
+            <f:selectItem itemLabel="Branca" itemValue="Branca"/>
+            <f:selectItem itemLabel="Preta" itemValue="Preta"/>
+            <f:selectItem itemLabel="Parda" itemValue="Parda"/>
+            <f:selectItem itemLabel="Indígena" itemValue="Indígena"/>
+            <f:selectItem itemLabel="Amarela" itemValue="Amarela"/>
+            
+        </p:selectOneRadio>
+        
+        <p:outputLabel for="generoSusp" value="Identidade de gênero:"/>
+         <p:selectOneRadio id="generoSusp" value="#{formularioBean.formulario.genero}">
+            <f:selectItem itemLabel="Masculino Cissexual" itemValue="Masculino Cissexual"/>
+            <f:selectItem itemLabel="Feminio Cissexal" itemValue="Feminio Cissexal"/>
+            <f:selectItem itemLabel="Masculino Transexual" itemValue="Masculino Transexual"/>
+            <f:selectItem itemLabel="Feminino Transexual" itemValue="Feminino Transexual"/>
+            
+        </p:selectOneRadio>  
+
+    <p:outputLabel for="orientacaoSexual" value="Orientação Sexual:" />
+    <p:selectOneMenu id="orientacaoSexual" value="#{formularioBean.formulario.orientacaoSexual}">
+        <f:selectItem itemLabel="Selecione" itemValue="" />
+        <f:selectItem itemLabel="Heterossexual" itemValue="Heterossexual" />
+        <f:selectItem itemLabel="Homossexual" itemValue="Homossexual" />
+        <f:selectItem itemLabel="Bissexual" itemValue="Bissexual" />
+        <f:selectItem itemLabel="Pansexual" itemValue="Pansexual" />
+        <f:selectItem itemLabel="Não Binário" itemValue="Não Binário" />
+        <f:selectItem itemLabel="Outro" itemValue="Outro" />
+        
+    </p:selectOneMenu>
+    
+    
+    <p:outputLabel for="violaçãoDireito" value="QUE TIPO DE VIOLAÇÃO DE DIREITO:" />
+    <p:selectOneMenu id="violaçãoDireito" value="#{formularioBean.formulario.tipoInfracao}">
+        <f:selectItem itemLabel="Selecione" itemValue="" />
+        <f:selectItem itemLabel="Violência fisica" itemValue="Violência fisica" />
+        <f:selectItem itemLabel="Automutilação" itemValue="Automutilação" />
+        <f:selectItem itemLabel="bullying" itemValue="bullying" />
+        <f:selectItem itemLabel="Negligência" itemValue="Negligência" />
+        <f:selectItem itemLabel="Suicídio" itemValue="Suicídio" />
+        <f:selectItem itemLabel="Violência sexual" itemValue="Violência sexual" />
+        <f:selectItem itemLabel="Gravidez abaixo de 14 anos" itemValue="Gravidez abaixo de 14 anos"/>
+        <f:selectItem itemLabel="Violência psciológica" itemValue="Violência psciológica" />
+        <f:selectItem itemLabel="Trabalho infantil" itemValue="Trabalho infantil" />
+                
+    </p:selectOneMenu>
+    
+        <p:row>
+            <p:column styleClass="ui-grid-col-12">
+                
+            </p:column>
+        </p:row>
+
+     
+    </p:panelGrid>
+	    
+        <p:outputLabel for="Incid" value="INCIDENTE (relate o que a criança/adolescente) contou para você. Tente ser o mais 
+claro possivel, mas não insista com a vitima para que ela diga além do que ela consegue, pois isso pode 
+acarretar mais dor para ela."/>
+        <p:textEditor id="Incid" widgetVar="editor1" value="#{formularioBean.formulario.incidente}" secure="False" height="300" required="true" requiredMessages="O campo é Obrigatorio" />
+      
+	
+	   <p:row>
+            <p:column styleClass="ui-grid-col-12">
+                <p:commandButton value="Salvar" action="#{formularioBean.salvar}" update="cadastroInc" styleClass="mr-2" style="width: auto"/>
+                <p:button value="Lista de incidentes" outcome="listagem_incidente.xhtml" styleClass="mr-2" style="width: auto"/>
+                <p:button value="Voltar" outcome="index.xhtml" />
+                
+                
+            </p:column>
+        </p:row>
+	</p:panel>
+</h:form>
+
+
+</html>
+

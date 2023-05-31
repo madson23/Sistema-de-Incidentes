@@ -1,0 +1,65 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head><title>Painel de Incidentes</title></h:head>
+
+    <h:body>
+    <f:event listener="#{formularioBean.listar}" type="preRenderView"></f:event>
+        <h:form id="itens_enviados">
+         <p:messages id="messages" showDetail="true" closable="true">
+	            <p:autoUpdate/>
+	        </p:messages>
+            <p:panel header="Itens Enviados" colmns="2">
+            <p:panelGrid columns="1" >
+                <p:dataTable  value="#{formularioBean.formularios}" var="formulario">
+                    <p:column headerText="ID"><h:outputLabel value="#{formulario.id}"/></p:column>
+                    <p:column headerText="Vitíma">
+                        <h:outputText value="#{formulario.nomeVit}"/>
+                    </p:column>
+                    <p:column headerText="Tipo de Infração">
+                        <h:outputText value="#{formulario.tipoInfracao}"/>
+                    </p:column>
+                    <p:column headerText="Idade da Vitíma">
+                        <h:outputText value="#{formulario.idadeVit}"/>
+                    </p:column>
+                    <p:column headerText="Data do Registro">
+                        <h:outputText value="#{formulario.dataRegistro}">
+                            <f:convertDateTime pattern="dd/MM/yyyy HH:mm"/>
+                        </h:outputText>
+                    </p:column>
+                    <p:column headerText="Agressor">
+                        <h:outputText value="#{formulario.nome}"/>
+                    </p:column>
+                    <p:column>
+                    <h:commandButton value="Excluir" action="#{formularioBean.excluir}" ajax="false">
+						<f:setPropertyActionListener value="#{formulario}"
+							target="#{formularioBean.formulario}" update="itens_enviados" />
+					</h:commandButton>
+                    </p:column>
+                    
+                    
+                </p:dataTable>                
+               </p:panelGrid>
+               
+                <p:button icon="pi pi-envelope" value="Novo Incidente" outcome="cadastro_incidente.xhtml" style="ba"/>
+            	<p:separator orientation="vertical"/>
+            	
+            	<p:button value="Lista de Usuario" outcome="listagem_usuario.xhtml" styleClass="mr-2" style="width: auto"/>
+            	
+            	<p:separator orientation="vertical"/>
+            	
+            	    
+            
+            </p:panel>
+        </h:form>
+            
+    </h:body>
+</html>
+
+
